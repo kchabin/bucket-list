@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="ko">
+    <head>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <link rel="stylesheet" type="text/css" href="https://s3.ap-northeast-2.amazonaws.com/materials.spartacodingclub.kr/bucketList/sparta-bucketlist.css"/>
+        <title>2024 버킷리스트</title>
+
+        <style>
+            @import url('https://fonts.googleapis.com/css2?family=Song+Myung&display=swap');
+            * {
+                font-family: 'Song Myung', serif;
+            }
+            .bg {
+                background-image: url("https://s3.ap-northeast-2.amazonaws.com/materials.spartacodingclub.kr/bucketList/bg-grid.png");
+                background-size: cover;
+                background-position: center;
+                margin: auto;
+            }
+            .title {
+                background-color: tomato;
+                border-radius: 10px;
+                padding: 4px 14px;
+                color: black;
+            }
+            .msg {
+                margin: -5px 0 15px;
+            }
+            .bucket {
+                width: 160px;
+                height: 160px;
+                background-size: cover;
+                background-position: center;
+            }
+            .img1 {
+                background-image: url("https://s3.ap-northeast-2.amazonaws.com/materials.spartacodingclub.kr/bucketList/bucket-red.png");
+            }
+
+            .img2 {
+                background-image: url("https://s3.ap-northeast-2.amazonaws.com/materials.spartacodingclub.kr/bucketList/bucket-lightred.png");
+            }
+        </style>
+    </head>
+    <body class="bg center">
+        <h1 class="title">2024년 버킷리스트</h1>
+        <p class="msg">올해 안에 3가지를 달성하지 못할 경우,</p>
+        <p class="msg">OOO을 하겠습니다.</p>
+        <div class="flex-row wrap">
+            <div class="bucket img1 center">해커톤 참가하기</div>
+            <div class="bucket img2 center">리액트로 웹 사이트 만들기</div>
+            <div class="bucket img1 center">Spring 공부하기</div>
+            <div class="bucket img2 center">자유수영 기간수료</div>
+            <div class="bucket img1 center">체중 감량하기</div>
+            <div class="bucket img2 center">KCD 2024 행사 성공</div>
+        </div>
+
+        <script>
+                    // 페이지 로드 시 이전 상태 복원
+            document.addEventListener("DOMContentLoaded", (event) => {
+            const buckets = document.querySelectorAll(".bucket");
+            buckets.forEach((bucket, index) => {
+                // 로컬 스토리지에서 상태 읽기
+                const isDone = localStorage.getItem("bucket" + index) === "done";
+                if (isDone) {
+                bucket.classList.add("done");
+                }
+            });
+            });
+
+            // 버킷 리스트 클릭 이벤트
+            const buckets = document.querySelectorAll(".bucket");
+            buckets.forEach((bucket, index) => {
+            bucket.addEventListener("click", function () {
+                // 클래스 토글
+                bucket.classList.toggle("done");
+
+                // 로컬 스토리지에 상태 저장
+                if (bucket.classList.contains("done")) {
+                localStorage.setItem("bucket" + index, "done");
+                } else {
+                localStorage.setItem("bucket" + index, "");
+                }
+            });
+            });
+        </script>
+    </body>
+</html>
